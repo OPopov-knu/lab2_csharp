@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StudentParliament>
+  <Member fullName="Коваль Мар'яна Андріївна" faculty="Факультет комп'ютерних наук та кібернетики" department="Кафедра інформаційних систем" specialty="Комп'ютерні науки">
+    <Event type="Студентський форум" startDate="2026-03-10" endDate="2026-03-12" />
+    <Event type="День факультету" startDate="2026-04-17" endDate="2026-04-17" />
+  </Member>
+  <Member fullName="Шевчук Данило Ігорович" faculty="Факультет комп'ютерних наук та кібернетики" division="Відділення прикладної математики" department="Кафедра обчислювальної математики" specialty="Прикладна математика">
+    <Event type="Хакатон" startDate="2026-05-08" endDate="2026-05-10" />
+  </Member>
+  <Member fullName="Бондар Олена Сергіївна" faculty="Економічний факультет" specialty="Економіка">
+    <Event type="Засідання парламенту" startDate="2026-02-05" endDate="2026-02-05" />
+    <Event type="Благодійний ярмарок" startDate="2026-12-14" endDate="2026-12-15" />
+  </Member>
+  <Member fullName="Мельник Тарас Олегович" faculty="Юридичний факультет" department="Кафедра конституційного права" specialty="Право">
+    <Event type="Дебати" startDate="2026-03-25" endDate="2026-03-25" />
+  </Member>
+  <Member fullName="Ткаченко Ірина Василівна" faculty="Економічний факультет" division="Відділення фінансів" department="Кафедра фінансів" specialty="Фінанси, банківська справа та страхування">
+    <Event type="Студентський форум" startDate="2026-03-10" endDate="2026-03-12" />
+    <Event type="Засідання парламенту" startDate="2026-02-05" endDate="2026-02-05" />
+  </Member>
+  <Member fullName="Лисенко Артем Романович" faculty="Філософський факультет" specialty="Політологія">
+    <Event type="Дебати" startDate="2026-03-25" endDate="2026-03-25" />
+  </Member>
+</StudentParliament>
