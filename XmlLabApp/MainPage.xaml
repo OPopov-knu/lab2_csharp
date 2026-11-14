@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:strategies="clr-namespace:XmlLabApp.Strategies"
+             xmlns:vm="clr-namespace:XmlLabApp.ViewModels"
+             x:Class="XmlLabApp.MainPage"
+             x:DataType="vm:MainViewModel"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{AppThemeBinding Light=#F4F6F8, Dark=#1B1D20}">
+
+    <ContentPage.Resources>
+        <Style x:Key="Caption" TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray300}}" />
+            <Setter Property="Margin" Value="0,8,0,0" />
+        </Style>
+        <Style x:Key="SecondaryButton" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="Transparent" />
+            <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+            <Setter Property="BorderColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
+            <Setter Property="BorderWidth" Value="1" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid ColumnDefinitions="320,*" ColumnSpacing="16" Padding="16">
+
+        <Grid Grid.Column="0" RowDefinitions="*,Auto" RowSpacing="8">
+            <ScrollView>
+                <VerticalStackLayout Spacing="8" Padding="0,0,12,0">
+                    <Label Text="ФАЙЛ" Style="{StaticResource Caption}" />
+                    <Button Text="Відкрити XML…" Command="{Binding OpenXmlCommand}" />
+                    <Label Text="{Binding FileName}" FontSize="13" />
+
+                    <Label Text="ПАРАМЕТРИ ПОШУКУ" Style="{StaticResource Caption}" />
+                    <Picker Title="Спосіб аналізу"
+                            ItemsSource="{Binding Strategies}"
+                            ItemDisplayBinding="{Binding Name, x:DataType=strategies:IXmlSearchStrategy}"
+                            SelectedItem="{Binding SelectedStrategy}" />
+
+                    <VerticalStackLayout Spacing="8" BindableLayout.ItemsSource="{Binding Filters}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="vm:AttributeFilter">
+                                <Picker Title="{Binding Caption}"
+                                        ItemsSource="{Binding Values}"
+                                        SelectedItem="{Binding SelectedValue}" />
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </VerticalStackLayout>
+
+                    <Entry Placeholder="Ключові слова" Text="{Binding Keywords}" />
+                </VerticalStackLayout>
+            </ScrollView>
+
+            <VerticalStackLayout Grid.Row="1" Spacing="8" Padding="0,0,12,0">
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                    <Button Text="Пошук" Command="{Binding SearchCommand}" />
+                    <Button Grid.Column="1" Text="Clear" Command="{Binding ClearCommand}" Style="{StaticResource SecondaryButton}" />
+                </Grid>
+                <Button Text="Трансформувати в HTML…" Command="{Binding TransformCommand}" />
+                <Button Text="Вихід" Command="{Binding ExitCommand}" Style="{StaticResource SecondaryButton}" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="8">
+            <Label Text="РЕЗУЛЬТАТ" Style="{StaticResource Caption}" />
+            <Border Grid.Row="1" Padding="12" StrokeThickness="1"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <ScrollView>
+                    <Label Text="{Binding Output}" />
+                </ScrollView>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>
